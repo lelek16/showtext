@@ -9,7 +9,7 @@ demo page: [DEMO](http://witaszak.pl/showtext)
 ```html
 <script src="lib/jquery.showtext.min.js"></script>
 ```
-### 2. Initialize
+### 2. Init
 ```html
 <script>
    $('p').showText(); 
@@ -30,6 +30,13 @@ demo page: [DEMO](http://witaszak.pl/showtext)
 #### time: `400`
 #### timeout: `1000`
 
-
+### 5. Example usage
+<code>
+$('p').showText({
+	type: 'char',
+	time: 50,
+	timeout: 200
+});
+</code>
 ##License
 MIT
