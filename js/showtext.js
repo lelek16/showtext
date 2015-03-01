@@ -4,7 +4,7 @@
     var defaults = {
       type: 'all',
       time: 400,
-      timeout: 100
+      timeout: 1000
     },
       settings = $.extend({}, defaults, options),
       elem = this,
