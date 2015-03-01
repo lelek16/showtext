@@ -1,7 +1,7 @@
 #ShowText
-Few fade animations (via CSS3 transitions) after page load
+Few fade text animations (via CSS3 transitions) after page load
 
-demo page: [.demo](http://witaszak.pl/showtext)
+demo page: [DEMO](http://witaszak.pl/showtext)
 
 ##Getting Started
 
