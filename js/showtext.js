@@ -18,7 +18,9 @@
       length = elem.text().length,
       i = 0,
       index = 0;
+
     settings.onStart.call(this);
+
     switch (settings.type) {
     case 'all':
       elem.wrapInner('<span></span>');
@@ -62,13 +64,21 @@
       var tempArray = $(elem).children().sort(function (a, b) {return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase()); });
       if (settings.type === "alpha_desc") { tempArray = $(elem).children().sort(function (a, b) {return $(b).text().toUpperCase().localeCompare($(a).text().toUpperCase()); }); }
       var interval = setInterval(function () {
-        $(tempArray[index]).animate({
-          opacity: 1
-        }, settings.time, function () {
-          settings.onChange.call(this);
+        tempArray.each(function(k,v){
+          if ($(v).text() == $(tempArray[index]).text()){
+             $(v).animate({
+                opacity: 1
+              }, settings.time, function () {
+                settings.onChange.call(this);
+              });
+          }
         });
-        index++;
-        if (index === length) {
+        for(var i = tempArray.length - 1; i >= 0; i--) {
+            if($(tempArray[i]).text() === $(tempArray[index]).text()) {
+               tempArray.splice(i, 1);
+            }
+        }
+        if (tempArray.length === 0) {
           window.clearInterval(interval);
         }
       }, settings.timeout);
