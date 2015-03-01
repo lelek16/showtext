@@ -23,12 +23,10 @@
       elem.wrapInner('<span></span>');
       elem = elem.children('span');
       elem.css('opacity', 0);
+      elem.css('transition', 'opacity ' + settings.time + 'ms linear');
       setTimeout(function () {
-        $(elem).animate({
-          opacity: 1
-        }, settings.time, function () {
-          settings.onChange.call(elem);
-        });
+        settings.onChange.call(this);
+        $(elem).css('opacity', 1);
       }, settings.timeout);
       settings.onEnd.call(elem);
       break;
@@ -38,12 +36,10 @@
       }
       elem.html(ret);
       elem.children().css('opacity', 0);
+      elem.children().css('transition', 'opacity ' + settings.time + 'ms linear');
       var timeout = setInterval(function () {
-        $(elem.children()[index]).animate({
-          opacity: 1
-        }, settings.time, function () {
-          settings.onChange.call(this);
-        });
+        settings.onChange.call(this);
+        $(elem.children()[index]).css('opacity', 1);
         index++;
         if (index === length) {
           window.clearInterval(timeout);
@@ -58,16 +54,14 @@
       }
       elem.html(ret);
       elem.children().css('opacity', 0);
+      elem.children().css('transition', 'opacity ' + settings.time + 'ms linear');
       var tempArray = $(elem).children().sort(function (a, b) {return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase()); });
       if (settings.type === "alpha_desc") { tempArray = $(elem).children().sort(function (a, b) {return $(b).text().toUpperCase().localeCompare($(a).text().toUpperCase()); }); }
       var interval = setInterval(function () {
         tempArray.each(function () {
           if ($(this).text() === $(tempArray[index]).text()) {
-            $(this).animate({
-              opacity: 1
-            }, settings.time, function () {
-              settings.onChange.call(this);
-            });
+            settings.onChange.call(this);
+            $(this).css('opacity', 1);
           }
         });
 
